@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:plantify/screens/home.dart';
-import 'package:plantify/screens/signip.dart';
+import 'package:plantify/screens/login.dart';
 
-class LoginView extends StatelessWidget {
-  LoginView({super.key});
+class SignUpView extends StatelessWidget {
+  SignUpView({super.key});
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -19,17 +19,17 @@ class LoginView extends StatelessWidget {
           child: Column(
         children: [
           Container(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
             child: const Align(
                 alignment: Alignment.topLeft,
                 child: Image(
                     image: AssetImage('images/Logo.png'),
                     fit: BoxFit.contain,
-                    width: 200,
-                    height: 200)),
+                    width: 150,
+                    height: 150)),
           ),
           const Text(
-            "Login",
+            "SignUp",
             style: TextStyle(
                 color: Color(0xFF0D986A),
                 fontSize: 30,
@@ -50,24 +50,25 @@ class LoginView extends StatelessWidget {
               child: TextButton(
                 onPressed: (){
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => SignUpView()));
+                      builder: (context) => LoginView()));
                 },
                 child: Text(
-                  "Don't Have an Account yet?",
+                  "Have an Account? Login",
                   style: TextStyle(
                       color: Color(0xFF0D986A),
                       fontSize: 10,
                       fontWeight: FontWeight.bold),
                 ),
               )),
-          const SizedBox(height: 40),
+          const SizedBox(height: 20),
+          const SizedBox(height: 30),
           ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pushReplacement(
                     MaterialPageRoute(builder: (context) => const HomeView()));
               },
               child: const Text(
-                "Login",
+                "SignUp",
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 25,
