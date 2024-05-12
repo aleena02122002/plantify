@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
-import 'package:plantify/screens/home.dart';
+import 'package:plantify/screens/homeview.dart';
 import 'package:plantify/screens/signip.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginView extends StatelessWidget {
   LoginView({super.key});
@@ -12,6 +13,29 @@ class LoginView extends StatelessWidget {
 
   FocusNode _focusNode1 = FocusNode();
   FocusNode _focusNode2 = FocusNode();
+
+  loginUser(context) async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+      emailController.clear();
+      passwordController.clear();
+      print("=============== LoggedIn Successfully ===================");
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const HomePage()));
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+      }
+    } catch (e) {
+      print("=============== Catch ===================");
+      print(e);
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,9 +86,9 @@ class LoginView extends StatelessWidget {
               )),
           const SizedBox(height: 40),
           ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => const HomeView()));
+              onPressed: ()async {
+                await loginUser(context);
+
               },
               child: const Text(
                 "Login",
@@ -95,10 +119,10 @@ Padding textField(String hinttext, TextEditingController _controller,
           prefixIcon: icon,
           enabledBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(6.0)),
-              borderSide: BorderSide(color: Color(0xFF004A61))),
+              borderSide: BorderSide(color: Color(0xFF0D986A))),
           focusedBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(6.0)),
-              borderSide: BorderSide(color: Color(0xFFB65FCF), width: 2.0))),
+              borderSide: BorderSide(color: Color(0xFF0D986A), width: 2.0))),
     ),
   );
 }

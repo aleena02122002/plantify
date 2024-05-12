@@ -22,8 +22,9 @@ class _SplashViewState extends State<SplashView> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: SizedBox(
+    return Scaffold(
+      resizeToAvoidBottomInset: true,
+      body: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: Stack(
@@ -44,7 +45,7 @@ class _SplashViewState extends State<SplashView> {
                       color: Color(0xFF0D986A),
                       borderRadius: BorderRadius.only(bottomLeft: Radius.circular(70), bottomRight: Radius.circular(70))
                   ),
-                  child: Center(child: Image.asset('images/plant.png', scale: 0.8, width: 300, height: 340,),),
+                  child: Center(child: Image.asset('images/plantPhoto.png', scale: 0.8, width: 300, height: 340,),),
                 )
               ],
             ),

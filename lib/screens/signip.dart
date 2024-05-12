@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:plantify/screens/home.dart';
+import 'package:plantify/screens/homeview.dart';
 import 'package:plantify/screens/login.dart';
 
 class SignUpView extends StatelessWidget {
@@ -65,7 +66,7 @@ class SignUpView extends StatelessWidget {
           ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => const HomeView()));
+                    MaterialPageRoute(builder: (context) => const HomePage()));
               },
               child: const Text(
                 "SignUp",
